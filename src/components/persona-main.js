@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit";
 import "./persona-ficha-listado";
 import "./persona-form";
-import "./persona-main-dm";
+import "../data/persona-main-dm";
 
 class PersonaMain extends LitElement {
   static get properties() {
@@ -46,6 +46,7 @@ class PersonaMain extends LitElement {
       this.dispatchEvent(
         new CustomEvent("people-data-info", { detail: peopleDataInfo })
       );
+      this.maxValueForFilter();
     }
   }
 
@@ -176,6 +177,20 @@ class PersonaMain extends LitElement {
     console.log("persona almacenada");
 
     this.showPersonForm = false;
+  }
+
+  maxValueForFilter(e) {
+    let maxValue = 1950;
+    this.people.forEach((author) => {
+      if (author.yearsInCompany > maxValue) {
+        maxValue = author.yearsInCompany;
+      }
+    });
+    this.dispatchEvent(
+      new CustomEvent("max-value", {
+        detail: { maxValue: maxValue },
+      })
+    );
   }
 }
 

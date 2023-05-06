@@ -5,11 +5,24 @@ class PersonaSidebar extends LitElement {
     return {
       peopleLength: { type: Number },
       peopleCanTeach: { type: Number },
+      maxValueForFilter: { type: Number },
+      createYearSelected: { type: Number },
     };
   }
 
   constructor() {
     super();
+  }
+
+  updated(changedProperties) {
+    console.log(changedProperties, "llllllllllllllll");
+    if (changedProperties.has("createYearSelected")) {
+      // this.dispatchEvent(
+      //   new CustomEvent("createYear-selected", {
+      //     detail: this.createYearSelect,
+      //   })
+      // );
+    }
   }
 
   render() {
@@ -39,8 +52,9 @@ class PersonaSidebar extends LitElement {
                 list="createYear"
                 @input=${this.createYearSelect}
                 min="1450"
-                max="1950"
+                max=${this.maxValueForFilter}
                 step="50"
+                .value=${this.maxValueForFilter}
               />
             </div>
           </div>
@@ -58,10 +72,7 @@ class PersonaSidebar extends LitElement {
   createYearSelect(e) {
     console.log("createYearSelect");
     console.log("se ha seleccionado el año " + e.target.value);
-    let createYearSelected = e.target.value;
-    this.dispatchEvent(
-      new CustomEvent("createYear-selected", { detail: createYearSelected })
-    );
+    this.createYearSelected = e.target.value;
   }
 }
 

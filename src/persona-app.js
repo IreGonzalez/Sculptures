@@ -39,6 +39,7 @@ class PersonaApp extends LitElement {
         <persona-main
           class="col-10"
           @people-data-info="${this.peopleDataInfo}"
+          @max-value="${this.maxValue}"
         ></persona-main>
       </div>
       <persona-footer></persona-footer>
@@ -66,6 +67,12 @@ class PersonaApp extends LitElement {
   peopleDataInfo(e) {
     console.log("recibe el array");
     this.shadowRoot.querySelector("persona-calculator").fpeople = e.detail;
+  }
+
+  maxValue(e) {
+    console.log("recoge el máximo valor de yearsInCompany " + e.detail);
+    this.shadowRoot.querySelector("persona-sidebar").maxValueForFilter =
+      e.detail.maxValue;
   }
 
   createYearSelected(e) {
