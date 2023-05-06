@@ -1,10 +1,10 @@
 import { LitElement, html } from "lit";
 //se importa uno dentro del otro para que compartan las estructuras del DOM. También así se sigue una coherencia en la que se importan los componentes en el sitio en el que se van a utilizar
-import "../persona-header/persona-header";
-import "../persona-sidebar/persona-sidebar";
-import "../persona-main/persona-main";
-import "../persona-footer/persona-footer";
-import "../persona-calculator/persona-calculator";
+import "./components/persona-header";
+import "./components/persona-sidebar";
+import "./components/persona-main";
+import "./components/persona-footer";
+import "./components/persona-calculator";
 
 class PersonaApp extends LitElement {
   static get properties() {

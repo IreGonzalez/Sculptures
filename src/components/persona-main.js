@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
-import "../persona-ficha-listado/persona-ficha-listado";
-import "../persona-form/persona-form";
+import "./persona-ficha-listado";
+import "./persona-form";
 import "./persona-main-dm";
 
 class PersonaMain extends LitElement {
