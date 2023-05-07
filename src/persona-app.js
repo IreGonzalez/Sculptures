@@ -34,7 +34,7 @@ class PersonaApp extends LitElement {
         <persona-sidebar
           class="col-2"
           @new-person="${this.newPerson}"
-          @createYear-selected=${this.createYearSelected}
+          @createdYearValue-for-filter=${this.createdYearValueForFilter}
         ></persona-sidebar>
         <persona-main
           class="col-10"
@@ -70,14 +70,18 @@ class PersonaApp extends LitElement {
   }
 
   maxValue(e) {
-    console.log("recoge el máximo valor de yearsInCompany " + e.detail);
+    console.log("recoge el máximo valor de createdYear " + e.detail);
     this.shadowRoot.querySelector("persona-sidebar").maxValueForFilter =
       e.detail.maxValue;
   }
 
-  createYearSelected(e) {
-    console.log("recoge el valor de createYearSelected " + e.detail);
-    this.shadowRoot.querySelector("persona-main").createYearSelected = e.detail;
+  createdYearValueForFilter(e) {
+    console.log(
+      "recoge el valor establecido para el filtro, que es: " +
+        e.detail.createdYearValueForFilter
+    );
+    this.shadowRoot.querySelector("persona-main").createdYearValueForFilter =
+      e.detail.createdYearValueForFilter;
   }
 }
 

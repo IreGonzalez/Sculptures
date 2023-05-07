@@ -6,23 +6,12 @@ class PersonaSidebar extends LitElement {
       peopleLength: { type: Number },
       peopleCanTeach: { type: Number },
       maxValueForFilter: { type: Number },
-      createYearSelected: { type: Number },
+      createdYearValueForFilter: { type: Number },
     };
   }
 
   constructor() {
     super();
-  }
-
-  updated(changedProperties) {
-    console.log(changedProperties, "llllllllllllllll");
-    if (changedProperties.has("createYearSelected")) {
-      // this.dispatchEvent(
-      //   new CustomEvent("createYear-selected", {
-      //     detail: this.createYearSelect,
-      //   })
-      // );
-    }
   }
 
   render() {
@@ -49,8 +38,8 @@ class PersonaSidebar extends LitElement {
             <div>
               <input
                 type="range"
-                list="createYear"
-                @input=${this.createYearSelect}
+                list="createdYear"
+                @input=${this.createdYearSelected}
                 min="1450"
                 max=${this.maxValueForFilter}
                 step="50"
@@ -69,11 +58,18 @@ class PersonaSidebar extends LitElement {
     this.dispatchEvent(new CustomEvent("new-person", {}));
   }
 
-  createYearSelect(e) {
-    console.log("createYearSelect");
-    console.log("se ha seleccionado el año " + e.target.value);
-    this.createYearSelected = e.target.value;
+  createdYearSelected(e) {
+    console.log("año seleccionado", e.target.value);
+    this.createdYearValueForFilter = e.target.value;
+
+    this.dispatchEvent(
+      new CustomEvent("createdYearValue-for-filter", {
+        detail: { createdYearValueForFilter: this.createdYearValueForFilter },
+      })
+    );
   }
+
+  // el valor del imput inicial debe ser el maxValueForFilter, pero en el momento en el que cambia, éste debería cambiar con él y actualizarse, por lo que debería estar en el updated modificando el valor del input
 }
 
 customElements.define("persona-sidebar", PersonaSidebar);

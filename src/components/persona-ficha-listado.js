@@ -4,7 +4,7 @@ class PersonaFichaListado extends LitElement {
   static get properties() {
     return {
       fname: { type: String },
-      yearsInCompany: { type: Number },
+      createdYear: { type: Number },
       photo: { type: Object },
       canTeach: { type: Boolean },
       profile: { type: String },
@@ -37,7 +37,7 @@ class PersonaFichaListado extends LitElement {
               <h5 class="card-title">${this.fname}</h5>
               <p class="card-text">${this.profile}</p>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">${this.yearsInCompany}</li>
+                <li class="list-group-item">${this.createdYear}</li>
               </ul>
               ${
                 this.canTeach === true

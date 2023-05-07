@@ -8,7 +8,7 @@ class PersonaMain extends LitElement {
     return {
       people: { type: Array },
       showPersonForm: { type: Boolean },
-      createYearSelected: { type: Number },
+      createdYearValueForFilter: { type: Number },
     };
   }
 
@@ -81,19 +81,23 @@ class PersonaMain extends LitElement {
           class="row row-cols-1 row-cols-sm-4"
           style=" row-gap: var(--bs-gutter-x);"
         >
-          ${this.people.map(
-            (person) => html`
-              <persona-ficha-listado
-                fname="${person.name}"
-                yearsInCompany="${person.yearsInCompany}"
-                .photo="${person.photo}"
-                .canTeach="${person.canTeach}"
-                profile="${person.profile}"
-                @delete-person="${this.deletePerson}"
-                @info-person="${this.infoPerson}"
-              ></persona-ficha-listado>
-            `
-          )}
+          ${this.people
+            .filter(
+              (author) => author.createdYear <= this.createdYearValueForFilter
+            )
+            .map(
+              (person) => html`
+                <persona-ficha-listado
+                  fname="${person.name}"
+                  createdYear="${person.createdYear}"
+                  .photo="${person.photo}"
+                  .canTeach="${person.canTeach}"
+                  profile="${person.profile}"
+                  @delete-person="${this.deletePerson}"
+                  @info-person="${this.infoPerson}"
+                ></persona-ficha-listado>
+              `
+            )}
         </div>
       </div>
       <div class="row">
@@ -104,10 +108,7 @@ class PersonaMain extends LitElement {
           @persona-form-store="${this.personFormStore}"
         ></persona-form>
       </div>
-      <persona-main-dm
-        @add-people="${this.peopleDataUpdate}"
-        yearForFilter="${this.createYearSelected}"
-      ></persona-main-dm>
+      <persona-main-dm @add-people="${this.peopleDataUpdate}"></persona-main-dm>
     `;
   }
 
@@ -133,7 +134,7 @@ class PersonaMain extends LitElement {
     let person = {};
     person.name = chosenPerson[0].name;
     person.profile = chosenPerson[0].profile;
-    person.yearsInCompany = chosenPerson[0].yearsInCompany;
+    person.createdYear = chosenPerson[0].createdYear;
     person.canTeach = chosenPerson[0].canTeach;
 
     this.shadowRoot.getElementById("personForm").person = person;
@@ -182,10 +183,11 @@ class PersonaMain extends LitElement {
   maxValueForFilter(e) {
     let maxValue = 1950;
     this.people.forEach((author) => {
-      if (author.yearsInCompany > maxValue) {
-        maxValue = author.yearsInCompany;
+      if (author.createdYear > maxValue) {
+        maxValue = author.createdYear;
       }
     });
+    this.createdYearValueForFilter = maxValue;
     this.dispatchEvent(
       new CustomEvent("max-value", {
         detail: { maxValue: maxValue },

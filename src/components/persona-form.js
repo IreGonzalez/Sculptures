@@ -52,8 +52,8 @@ class PersonaForm extends LitElement {
               type="text"
               class="form-control"
               placeholder="Año de creación"
-              .value="${this.person.yearsInCompany}"
-              @input="${this.updateYearsInCompany}"
+              .value="${this.person.createdYear}"
+              @input="${this.updatecreatedYear}"
             />
           </div>
           <div class="form-group">
@@ -99,13 +99,13 @@ class PersonaForm extends LitElement {
     this.person.profile = e.target.value;
   }
 
-  updateYearsInCompany(e) {
-    console.log("updateYearsInCompany");
+  updatecreatedYear(e) {
+    console.log("updatecreatedYear");
     console.log(
       "actualizamos los años en lacompañía con el valor de " + e.target.value
     );
 
-    this.person.yearsInCompany = e.target.value;
+    this.person.createdYear = e.target.value;
   }
 
   updateCanTeach(e) {
@@ -129,9 +129,7 @@ class PersonaForm extends LitElement {
     console.log("storePerson");
     console.log("La propiedad name vale " + this.person.name);
     console.log("La propiedad profile vale " + this.person.profile);
-    console.log(
-      "La propiedad yearsInCompany vale " + this.person.yearsInCompany
-    );
+    console.log("La propiedad createdYear vale " + this.person.createdYear);
 
     this.person.photo = {
       src: "./images/escultura.jpg",
@@ -144,7 +142,7 @@ class PersonaForm extends LitElement {
           person: {
             name: this.person.name,
             profile: this.person.profile,
-            yearsInCompany: this.person.yearsInCompany,
+            createdYear: this.person.createdYear,
             photo: this.person.photo,
             canTeach: this.person.updateCanTeach,
           },
@@ -159,7 +157,7 @@ class PersonaForm extends LitElement {
     this.person = {};
     this.person.name = "";
     this.person.profile = "";
-    this.person.yearsInCompany = "";
+    this.person.createdYear = "";
     this.person.updateCanTeach = false;
     this.editingPerson = false;
   }

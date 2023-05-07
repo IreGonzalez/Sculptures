@@ -4,7 +4,6 @@ class PersonaMainDM extends LitElement {
   static get properties() {
     return {
       people: { type: Array },
-      yearForFilter: { type: Number },
     };
   }
 
@@ -13,7 +12,7 @@ class PersonaMainDM extends LitElement {
     this.people = [
       {
         name: "Camille Claudel",
-        yearsInCompany: 1893,
+        createdYear: 1893,
         photo: {
           src: "./images/claudel-camille_la-valse_1895-1905_aware_women-artists_artistes-femmes-1158x1500.jpg",
           alt: "La Valse _ Camille Claudel",
@@ -23,7 +22,7 @@ class PersonaMainDM extends LitElement {
       },
       {
         name: "Auguste Rodin",
-        yearsInCompany: 1889,
+        createdYear: 1889,
         photo: {
           src: "./images/Rodin-danaide.jpg",
           alt: "Danaide _ Auguste Rodin",
@@ -33,7 +32,7 @@ class PersonaMainDM extends LitElement {
       },
       {
         name: "Constantin Brancusi",
-        yearsInCompany: 1913,
+        createdYear: 1913,
         photo: {
           src: "./images/brancusi-danaide.jpg",
           alt: "Danaide _ Brancusi",
@@ -44,7 +43,7 @@ class PersonaMainDM extends LitElement {
       },
       {
         name: "Agessandro, Atenodoro y Polidoro de Rodas",
-        yearsInCompany: 1506,
+        createdYear: 1506,
         photo: {
           src: "./images/agessandro-laocoonte.jpg",
           alt: "Laocoonte y sus hijos _ Agessandro de Rodas",
@@ -55,7 +54,7 @@ class PersonaMainDM extends LitElement {
       },
       {
         name: "Gian Lorenzo Bernini",
-        yearsInCompany: 1625,
+        createdYear: 1625,
         photo: {
           src: "./images/bernini-apolodafne.jpg",
           alt: "Apolo y Dafne _ Gian Lorenzo Bernini",
@@ -76,22 +75,7 @@ class PersonaMainDM extends LitElement {
       this.dispatchEvent(
         new CustomEvent("add-people", { detail: { people: peopleData } })
       );
-      this.yearForFilter = 1950;
     }
-
-    if (changedProperties.has("yearForFilter")) {
-      console.log("Se ha seleccionado un año de creación como filtro");
-      console.log(this.yearForFilter);
-      this.personFilterCreateYearSelected(this.yearForFilter, this.people);
-    }
-  }
-
-  personFilterCreateYearSelected(year, array) {
-    console.log("personFilterCreateYearSelected");
-    console.log("se va a filtrar " + array + " por el año " + year);
-    this.people = array.filter(
-      (peopleFilter) => peopleFilter.yearsInCompany <= year
-    );
   }
 }
 
