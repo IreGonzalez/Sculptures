@@ -88,6 +88,9 @@ class PersonaApp extends LitElement {
     );
     this.shadowRoot.querySelector("persona-main").createdYearValueForFilter =
       e.detail.createdYearValueForFilter;
+    this.shadowRoot.querySelector(
+      "persona-calculator"
+    ).createdYearValueForFilter = e.detail.createdYearValueForFilter;
   }
 }
 

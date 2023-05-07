@@ -5,6 +5,8 @@ class PersonaCalculator extends LitElement {
     return {
       fpeople: { type: Array },
       counterCanTeach: { type: Array },
+      counterPeople: { type: Array },
+      createdYearValueForFilter: { type: Number },
     };
   }
 
@@ -17,25 +19,38 @@ class PersonaCalculator extends LitElement {
 
     if (changedProperties.has("fpeople")) {
       console.log("Ha cambiado el fpeople en calculator");
-      // se debería sacar el cálculo en una variable
+      this.getCounterPeople();
+      this.getCounterCanTeach();
+    }
 
-      this.dispatchEvent(
-        new CustomEvent("change-fpeople-length", {
-          detail: { fpeople: this.fpeople.length },
-        })
-      );
-      this.getCanTeach();
+    if (changedProperties.has("createdYearValueForFilter")) {
+      this.peopleFiltered(this.createdYearValueForFilter);
     }
   }
 
-  getCanTeach() {
+  getCounterPeople() {
+    this.counterPeople = this.fpeople;
+    this.dispatchEvent(
+      new CustomEvent("change-fpeople-length", {
+        detail: { fpeople: this.counterPeople.length },
+      })
+    );
+  }
+
+  peopleFiltered(filtro) {
+    this.fpeople = this.fpeople.filter(
+      (author) => author.createdYear <= filtro
+    );
+  }
+
+  getCounterCanTeach() {
     let ArrayCanTeach = this.fpeople.filter(
       (people) => people.canTeach === true
     );
-    this.counterCanTeach = ArrayCanTeach.length;
+    this.counterCanTeach = ArrayCanTeach;
     this.dispatchEvent(
       new CustomEvent("change-counterCanTeach", {
-        detail: { counterCanTeach: this.counterCanTeach },
+        detail: { counterCanTeach: this.counterCanTeach.length },
       })
     );
   }
