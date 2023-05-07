@@ -6,6 +6,7 @@ class PersonaSidebar extends LitElement {
       peopleLength: { type: Number },
       peopleCanTeach: { type: Number },
       maxValueForFilter: { type: Number },
+      minValueForFilter: { type: Number },
       createdYearValueForFilter: { type: Number },
     };
   }
@@ -40,7 +41,7 @@ class PersonaSidebar extends LitElement {
                 type="range"
                 list="createdYear"
                 @input=${this.createdYearSelected}
-                min="1450"
+                min="${this.minValueForFilter}"
                 max=${this.maxValueForFilter}
                 step="50"
                 .value=${this.maxValueForFilter}

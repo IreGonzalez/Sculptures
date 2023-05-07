@@ -40,6 +40,7 @@ class PersonaApp extends LitElement {
           class="col-10"
           @people-data-info="${this.peopleDataInfo}"
           @max-value="${this.maxValue}"
+          @min-value="${this.minValue}"
         ></persona-main>
       </div>
       <persona-footer></persona-footer>
@@ -52,14 +53,13 @@ class PersonaApp extends LitElement {
   }
 
   getPeopleLength(e) {
-    console.log(e.detail);
+    console.log("getPeopleLength", e.detail.fpeople);
     this.shadowRoot.querySelector("persona-sidebar").peopleLength =
       e.detail.fpeople;
   }
 
   getCounterCanTeach(e) {
-    console.log("getCounterCanTeach");
-    console.log(e.detail);
+    console.log("getCounterCanTeach", e.detail.counterCanTeach);
     this.shadowRoot.querySelector("persona-sidebar").peopleCanTeach =
       e.detail.counterCanTeach;
   }
@@ -73,6 +73,12 @@ class PersonaApp extends LitElement {
     console.log("recoge el máximo valor de createdYear " + e.detail);
     this.shadowRoot.querySelector("persona-sidebar").maxValueForFilter =
       e.detail.maxValue;
+  }
+
+  minValue(e) {
+    console.log("recoge el máximo valor de createdYear " + e.detail);
+    this.shadowRoot.querySelector("persona-sidebar").minValueForFilter =
+      e.detail.minValue;
   }
 
   createdYearValueForFilter(e) {

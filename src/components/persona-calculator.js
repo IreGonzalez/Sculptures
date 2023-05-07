@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement } from "lit";
 
 class PersonaCalculator extends LitElement {
   static get properties() {
@@ -12,12 +12,8 @@ class PersonaCalculator extends LitElement {
     super();
   }
 
-  render() {
-    return html` <h1 style="visibility: hidden;">persona calculator</h1> `;
-  }
-
   updated(changedProperties) {
-    console.log("updated calculator");
+    console.log("updated calculator", changedProperties);
 
     if (changedProperties.has("fpeople")) {
       console.log("Ha cambiado el fpeople en calculator");
@@ -28,21 +24,20 @@ class PersonaCalculator extends LitElement {
           detail: { fpeople: this.fpeople.length },
         })
       );
-
-      let ArrayCanTeach = this.fpeople.filter(
-        (people) => people.canTeach === true
-      );
-      this.counterCanTeach = ArrayCanTeach.length;
-      console.log(this.counterCanTeach);
-
-      this.dispatchEvent(
-        new CustomEvent("change-counterCanTeach", {
-          detail: { counterCanTeach: this.counterCanTeach },
-        })
-      );
+      this.getCanTeach();
     }
+  }
 
-    console.log("fpeople actualizado");
+  getCanTeach() {
+    let ArrayCanTeach = this.fpeople.filter(
+      (people) => people.canTeach === true
+    );
+    this.counterCanTeach = ArrayCanTeach.length;
+    this.dispatchEvent(
+      new CustomEvent("change-counterCanTeach", {
+        detail: { counterCanTeach: this.counterCanTeach },
+      })
+    );
   }
 }
 

@@ -21,12 +21,12 @@ class PersonaMain extends LitElement {
   }
 
   peopleDataUpdate(e) {
-    console.log(e.detail.people);
+    console.log("peopleDataUpdate", e.detail.people);
     this.people = e.detail.people;
   }
 
   updated(changedProperties) {
-    console.log("updated");
+    console.log("updated main", changedProperties);
 
     if (changedProperties.has("showPersonForm")) {
       console.log(
@@ -40,13 +40,13 @@ class PersonaMain extends LitElement {
     }
 
     if (changedProperties.has("people")) {
-      console.log("Ha cambiado el Array ");
+      console.log("Ha cambiado el Array peopleDataInfo", this.people);
       let peopleDataInfo = this.people;
-      console.log(peopleDataInfo);
       this.dispatchEvent(
         new CustomEvent("people-data-info", { detail: peopleDataInfo })
       );
       this.maxValueForFilter();
+      this.minValueForFilter();
     }
   }
 
@@ -191,6 +191,20 @@ class PersonaMain extends LitElement {
     this.dispatchEvent(
       new CustomEvent("max-value", {
         detail: { maxValue: maxValue },
+      })
+    );
+  }
+
+  minValueForFilter(e) {
+    let minValue = 1450;
+    this.people.forEach((author) => {
+      if (author.createdYear < minValue) {
+        minValue = author.createdYear;
+      }
+    });
+    this.dispatchEvent(
+      new CustomEvent("min-value", {
+        detail: { minValue: minValue },
       })
     );
   }
