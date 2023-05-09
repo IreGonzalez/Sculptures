@@ -16,6 +16,11 @@ class PersonaSidebar extends LitElement {
   }
 
   render() {
+    console.log(
+      "----------- render sidebar",
+      this.peopleLength,
+      this.peopleCanTeach
+    );
     return html`
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -40,7 +45,7 @@ class PersonaSidebar extends LitElement {
               <input
                 type="range"
                 list="createdYear"
-                @input=${this.createdYearSelected}
+                @input=${this.onCreatedYearSelected}
                 min="${this.minValueForFilter}"
                 max=${this.maxValueForFilter}
                 step="50"
@@ -59,7 +64,7 @@ class PersonaSidebar extends LitElement {
     this.dispatchEvent(new CustomEvent("new-person", {}));
   }
 
-  createdYearSelected(e) {
+  onCreatedYearSelected(e) {
     console.log("año seleccionado", e.target.value);
     this.createdYearValueForFilter = e.target.value;
 

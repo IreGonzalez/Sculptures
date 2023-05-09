@@ -4,8 +4,6 @@ class PersonaCalculator extends LitElement {
   static get properties() {
     return {
       fpeople: { type: Array },
-      counterCanTeach: { type: Array },
-      counterPeople: { type: Array },
       createdYearValueForFilter: { type: Number },
     };
   }
@@ -16,41 +14,28 @@ class PersonaCalculator extends LitElement {
 
   updated(changedProperties) {
     console.log("updated calculator", changedProperties);
-
-    if (changedProperties.has("fpeople")) {
-      console.log("Ha cambiado el fpeople en calculator");
-      this.getCounterPeople();
-      this.getCounterCanTeach();
-    }
-
-    if (changedProperties.has("createdYearValueForFilter")) {
-      this.peopleFiltered(this.createdYearValueForFilter);
-    }
+    this.getCounterPeople();
+    this.getCounterCanTeach();
   }
 
   getCounterPeople() {
-    this.counterPeople = this.fpeople;
+    let counterPeople = this.fpeople?.filter(
+      (author) => author.createdYear <= this.createdYearValueForFilter
+    );
     this.dispatchEvent(
       new CustomEvent("change-fpeople-length", {
-        detail: { fpeople: this.counterPeople.length },
+        detail: { fpeople: counterPeople?.length || -1 },
       })
     );
   }
 
-  peopleFiltered(filtro) {
-    this.fpeople = this.fpeople.filter(
-      (author) => author.createdYear <= filtro
-    );
-  }
-
   getCounterCanTeach() {
-    let ArrayCanTeach = this.fpeople.filter(
-      (people) => people.canTeach === true
-    );
-    this.counterCanTeach = ArrayCanTeach;
+    let ArrayCanTeach = this.fpeople
+      ?.filter((author) => author.createdYear <= this.createdYearValueForFilter)
+      .filter((people) => people.canTeach === true);
     this.dispatchEvent(
       new CustomEvent("change-counterCanTeach", {
-        detail: { counterCanTeach: this.counterCanTeach.length },
+        detail: { counterCanTeach: ArrayCanTeach?.length || -1 },
       })
     );
   }

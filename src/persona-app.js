@@ -18,6 +18,11 @@ class PersonaApp extends LitElement {
   }
 
   render() {
+    console.log(
+      "----------- render app",
+      this.peopleLength,
+      this.peopleCanTeach
+    );
     return html`
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -54,18 +59,20 @@ class PersonaApp extends LitElement {
 
   getPeopleLength(e) {
     console.log("getPeopleLength", e.detail.fpeople);
+    // this.peopleLength = e.detail.fpeople;
     this.shadowRoot.querySelector("persona-sidebar").peopleLength =
       e.detail.fpeople;
   }
 
   getCounterCanTeach(e) {
     console.log("getCounterCanTeach", e.detail.counterCanTeach);
+    // this.peopleCanTeach = e.detail.counterCanTeach;
     this.shadowRoot.querySelector("persona-sidebar").peopleCanTeach =
       e.detail.counterCanTeach;
   }
 
   peopleDataInfo(e) {
-    console.log("recibe el array");
+    console.log("recibe el array", e.detail);
     this.shadowRoot.querySelector("persona-calculator").fpeople = e.detail;
   }
 
