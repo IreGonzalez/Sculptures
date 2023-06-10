@@ -6,7 +6,7 @@ class PersonaFichaListado extends LitElement {
       fname: { type: String },
       createdYear: { type: Number },
       photo: { type: Object },
-      canTeach: { type: Boolean },
+      Workshop: { type: Boolean },
       profile: { type: String },
     };
   }
@@ -40,7 +40,7 @@ class PersonaFichaListado extends LitElement {
                 <li class="list-group-item">${this.createdYear}</li>
               </ul>
               ${
-                this.canTeach === true
+                this.Workshop === true
                   ? html`<p><strong>Tiene taller</strong></p>`
                   : html``
               }

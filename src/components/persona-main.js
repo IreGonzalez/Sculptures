@@ -91,7 +91,7 @@ class PersonaMain extends LitElement {
                   fname="${person.name}"
                   createdYear="${person.createdYear}"
                   .photo="${person.photo}"
-                  .canTeach="${person.canTeach}"
+                  .Workshop="${person.Workshop}"
                   profile="${person.profile}"
                   @delete-person="${this.deletePerson}"
                   @info-person="${this.infoPerson}"
@@ -135,7 +135,7 @@ class PersonaMain extends LitElement {
     person.name = chosenPerson[0].name;
     person.profile = chosenPerson[0].profile;
     person.createdYear = chosenPerson[0].createdYear;
-    person.canTeach = chosenPerson[0].canTeach;
+    person.Workshop = chosenPerson[0].Workshop;
 
     this.shadowRoot.getElementById("personForm").person = person;
     this.shadowRoot.getElementById("personForm").editingPerson = true;

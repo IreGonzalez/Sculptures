@@ -4,7 +4,7 @@ class PersonaSidebar extends LitElement {
   static get properties() {
     return {
       peopleLength: { type: Number },
-      peopleCanTeach: { type: Number },
+      peopleWorkshop: { type: Number },
       maxValueForFilter: { type: Number },
       minValueForFilter: { type: Number },
       createdYearValueForFilter: { type: Number },
@@ -19,7 +19,7 @@ class PersonaSidebar extends LitElement {
     console.log(
       "----------- render sidebar",
       this.peopleLength,
-      this.peopleCanTeach
+      this.peopleWorkshop
     );
     return html`
       <link
@@ -40,7 +40,7 @@ class PersonaSidebar extends LitElement {
               <strong>Añadir</strong>
             </button>
             <h2 class="text-center">Hay ${this.peopleLength} autores,</h2>
-            <h2 class="text-center">${this.peopleCanTeach} tienen taller</h2>
+            <h2 class="text-center">${this.peopleWorkshop} tienen taller</h2>
             <div>
               <input
                 type="range"

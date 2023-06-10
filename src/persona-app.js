@@ -21,7 +21,7 @@ class PersonaApp extends LitElement {
     console.log(
       "----------- render app",
       this.peopleLength,
-      this.peopleCanTeach
+      this.peopleWorkshop
     );
     return html`
       <link
@@ -33,7 +33,7 @@ class PersonaApp extends LitElement {
       <persona-header></persona-header>
       <persona-calculator
         @change-fpeople-length="${this.getPeopleLength}"
-        @change-counterCanTeach="${this.getCounterCanTeach}"
+        @change-counterWorkshop="${this.getCounterWorkshop}"
       ></persona-calculator>
       <div class="row">
         <persona-sidebar
@@ -64,11 +64,11 @@ class PersonaApp extends LitElement {
       e.detail.fpeople;
   }
 
-  getCounterCanTeach(e) {
-    console.log("getCounterCanTeach", e.detail.counterCanTeach);
-    // this.peopleCanTeach = e.detail.counterCanTeach;
-    this.shadowRoot.querySelector("persona-sidebar").peopleCanTeach =
-      e.detail.counterCanTeach;
+  getCounterWorkshop(e) {
+    console.log("getCounterWorkshop", e.detail.counterWorkshop);
+    // this.peopleWorkshop = e.detail.counterWorkshop;
+    this.shadowRoot.querySelector("persona-sidebar").peopleWorkshop =
+      e.detail.counterWorkshop;
   }
 
   peopleDataInfo(e) {

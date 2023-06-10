@@ -17,7 +17,7 @@ class PersonaMainDM extends LitElement {
           src: "./images/claudel-camille_la-valse_1895-1905_aware_women-artists_artistes-femmes-1158x1500.jpg",
           alt: "La Valse _ Camille Claudel",
         },
-        canTeach: false,
+        Workshop: false,
         profile: "La Valse. Escultura vaciada en bronce. Museo Rodin, París.",
       },
       {
@@ -27,7 +27,7 @@ class PersonaMainDM extends LitElement {
           src: "./images/Rodin-danaide.jpg",
           alt: "Danaide _ Auguste Rodin",
         },
-        canTeach: true,
+        Workshop: true,
         profile: "Danaide. Escultura tallada en mármol. Museo Rodin, París.",
       },
       {
@@ -37,7 +37,7 @@ class PersonaMainDM extends LitElement {
           src: "./images/brancusi-danaide.jpg",
           alt: "Danaide _ Brancusi",
         },
-        canTeach: true,
+        Workshop: true,
         profile:
           "Danaide. Escultura vaciada en bronce. Centro Pompidou, París.",
       },
@@ -48,7 +48,7 @@ class PersonaMainDM extends LitElement {
           src: "./images/agessandro-laocoonte.jpg",
           alt: "Laocoonte y sus hijos _ Agessandro de Rodas",
         },
-        canTeach: false,
+        Workshop: false,
         profile:
           "Laocoonte y sus hijos. Escultura tallada en mármol. Museo Pio-Clementino, Ciudad del Vaticano.",
       },
@@ -59,7 +59,7 @@ class PersonaMainDM extends LitElement {
           src: "./images/bernini-apolodafne.jpg",
           alt: "Apolo y Dafne _ Gian Lorenzo Bernini",
         },
-        canTeach: true,
+        Workshop: true,
         profile:
           "Apolo y Dafne. Escultura tallada en mármol. Galería Borghese, Roma.",
       },

@@ -62,8 +62,8 @@ class PersonaForm extends LitElement {
               <input
                 type="checkbox"
                 placeholder="Si"
-                ?checked="${this.person.canTeach}"
-                @change="${this.updateCanTeach}"
+                ?checked="${this.person.Workshop}"
+                @change="${this.updateWorkshop}"
             /></label>
           </div>
           <button class="btn btn-primary" @click="${this.goBack}">
@@ -108,11 +108,11 @@ class PersonaForm extends LitElement {
     this.person.createdYear = e.target.value;
   }
 
-  updateCanTeach(e) {
-    console.log("updateCanTeach");
+  updateWorkshop(e) {
+    console.log("updateWorkshop");
     console.log("actualizamos si tiene taller " + e.target.checked);
 
-    this.person.updateCanTeach = e.target.checked;
+    this.person.updateWorkshop = e.target.checked;
   }
 
   goBack(e) {
@@ -144,7 +144,7 @@ class PersonaForm extends LitElement {
             profile: this.person.profile,
             createdYear: this.person.createdYear,
             photo: this.person.photo,
-            canTeach: this.person.updateCanTeach,
+            Workshop: this.person.updateWorkshop,
           },
           editingPerson: this.editingPerson,
         },
@@ -158,7 +158,7 @@ class PersonaForm extends LitElement {
     this.person.name = "";
     this.person.profile = "";
     this.person.createdYear = "";
-    this.person.updateCanTeach = false;
+    this.person.updateWorkshop = false;
     this.editingPerson = false;
   }
 }

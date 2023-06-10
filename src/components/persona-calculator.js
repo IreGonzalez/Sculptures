@@ -15,7 +15,7 @@ class PersonaCalculator extends LitElement {
   updated(changedProperties) {
     console.log("updated calculator", changedProperties);
     this.getCounterPeople();
-    this.getCounterCanTeach();
+    this.getCounterWorkshop();
   }
 
   getCounterPeople() {
@@ -24,18 +24,18 @@ class PersonaCalculator extends LitElement {
     );
     this.dispatchEvent(
       new CustomEvent("change-fpeople-length", {
-        detail: { fpeople: counterPeople?.length || -1 },
+        detail: { fpeople: counterPeople?.length || 0 },
       })
     );
   }
 
-  getCounterCanTeach() {
-    let ArrayCanTeach = this.fpeople
+  getCounterWorkshop() {
+    let ArrayWorkshop = this.fpeople
       ?.filter((author) => author.createdYear <= this.createdYearValueForFilter)
-      .filter((people) => people.canTeach === true);
+      .filter((people) => people.Workshop === true);
     this.dispatchEvent(
-      new CustomEvent("change-counterCanTeach", {
-        detail: { counterCanTeach: ArrayCanTeach?.length || -1 },
+      new CustomEvent("change-counterWorkshop", {
+        detail: { counterWorkshop: ArrayWorkshop?.length || 0 },
       })
     );
   }

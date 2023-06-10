@@ -1,0 +1,13 @@
+persona-app {
+    persona-main-dm
+        persona-main {
+            persona-header
+            persona-ficha-listado {
+                ficha-persona
+            }
+            persona-form
+            presona-footer
+        }
+        persona-sidebar
+    persona-calculator
+}
