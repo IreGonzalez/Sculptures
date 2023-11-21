@@ -17,8 +17,10 @@
 
 # build
 /_site/
-/dist/
 /out-tsc/
 
 storybook-static
 custom-elements.json
+package-lock.json
+.parcel-cache
+structure.json

@@ -9,7 +9,7 @@
     "analyze": "cem analyze --litelement",
     "start": "web-dev-server",
     "parcel": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir docs"
   },
   "dependencies": {
     "lit": "^2.7.4"
